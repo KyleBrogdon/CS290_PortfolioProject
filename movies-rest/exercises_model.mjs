@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 // Prepare to the database movies_db in the MongoDB server running locally on port 27017
 mongoose.connect(
     'mongodb://localhost:27017/exercises_db',
-    { useNewUrlParser: true }
+    { useNewUrlParser: true}
 );
 
 // Connect to to the database
@@ -73,9 +73,10 @@ const findExercise = async (filters) => {
  * @returns A promise. Resolves to the number of documents modified
  */
 const updateExercise = async (_id, name, reps, weight, unit, date) => {
+    console.log(_id)
     const result = await Exercise.replaceOne({ _id: _id },
         { name: name, reps: reps, weight: weight, unit: unit, date: date });
-    return result.nModified;
+    return result.Nmodified;
 }
 
 

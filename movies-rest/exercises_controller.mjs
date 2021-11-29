@@ -1,6 +1,7 @@
 import * as exercise from './exercises_model.mjs';
 import express from 'express';
-import mongoose from 'mongoose';
+import { Exercise } from './exercises_model.mjs';
+import  * as mongoose  from 'mongoose';
 
 const app = express();
 
@@ -51,14 +52,13 @@ app.get("/exercises", (req, res) => {
  * the values provided in the query parameters
  */
 app.put('/exercises/:_id', (req, res) => {
-    console.log(typeof req.params._id);
+    console.log(req.params._id);
     exercise.updateExercise(req.params._id, req.body.name, req.body.reps, req.body.weight, req.body.unit, req.body.date)
         .then(updateCount => {
             if (updateCount === 1){
                 res.type('application/json')
-                res.status(200).json({_id: exerciseID, name: req.body.name, reps: req.body.reps, weight: req.body.weight, date: req.body.date})
-            }
-            else{
+                res.json({_id: req.params._id, name: req.body.name, reps: req.body.reps, weight: req.body.weight, date: req.body.date})
+            }else{
                 res.status(404).json({Error: 'Resource not found'})
             }
         })
