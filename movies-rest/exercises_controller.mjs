@@ -57,7 +57,7 @@ app.put('/exercises/:_id', (req, res) => {
         .then(updateCount => {
             if (updateCount === 1){
                 res.type('application/json')
-                res.json({_id: req.params._id, name: req.body.name, reps: req.body.reps, weight: req.body.weight, date: req.body.date})
+                res.status(200).json({_id: req.params._id, name: req.body.name, reps: req.body.reps, weight: req.body.weight, date: req.body.date})
             }else{
                 res.status(404).json({Error: 'Resource not found'})
             }
