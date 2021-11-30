@@ -12,13 +12,14 @@ export const EditExercisePage = ({exerciseToEdit}) => {
 
     const editExercise = async () =>{
         const editedExercise = {name, reps, weight, unit, date}
-        const response = await fetch(`/exercises${exerciseToEdit._id}`, {
-            method: 'POST',
+        const response = await fetch(`/exercises/${exerciseToEdit._id}`, {
+            method: 'PUT',
             body: JSON.stringify(editedExercise),
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
         });
+        console.log (response)
         console.log(response.status)
         if (response.status === 200){
             alert ("Succesfully edited the movie");
