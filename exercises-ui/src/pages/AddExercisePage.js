@@ -55,7 +55,7 @@ export const AddExercisePage = () => {
             value = {date}
             onChange = {e => setDate(e.target.value)} />
         <button
-            onclick = {addExercise}
+            onClick = {addExercise}
         >Add</button>
     </div>
     )

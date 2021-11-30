@@ -11,18 +11,19 @@ export const EditExercisePage = ({exerciseToEdit}) => {
     const history = useHistory();
 
     const editExercise = async () =>{
-        const newExercise = {name, reps, weight, unit, date}
+        const editedExercise = {name, reps, weight, unit, date}
         const response = await fetch(`/exercises${exerciseToEdit._id}`, {
             method: 'POST',
-            body: JSON.stringify(newExercise),
+            body: JSON.stringify(editedExercise),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        if (response.status === 201){
-            alert ("Succesfully added the movie");
+        console.log(response.status)
+        if (response.status === 200){
+            alert ("Succesfully edited the movie");
         } else{
-            alert ("Failed to add movie");
+            alert ("Failed to edit movie");
         }
         history.push("/");
     };
@@ -50,8 +51,8 @@ export const EditExercisePage = ({exerciseToEdit}) => {
             value = {date}
             onChange = {e => setDate(e.target.value)} />
         <button
-            onclick = {editExercise}
-        >Add</button>
+            onClick = {editExercise}
+        >Save</button>
     </div>
     )
 }
