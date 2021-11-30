@@ -21,8 +21,8 @@ export const AddExercisePage = () => {
         });
         if (response.status === 201){
             alert ("Succesfully added the movie");
-        }else{
-            alert ("Failed to add movie")
+        } else{
+            alert ("Failed to add movie");
         }
         history.push("/");
     };
@@ -44,10 +44,11 @@ export const AddExercisePage = () => {
             placeholder = "Enter weight here"
             value = {weight}
             onChange = {e => setWeight(e.target.value)} />
-        <select value = 'Select unit' onChange = {e => setUnit(e.target.value)}>
-            <option value = 'kgs'></option>
-            <option value = 'lbs'></option>
-            </select>
+        <input
+            type = "text"
+            placeholder = "Enter unit here"
+            value = {unit}
+            onChange = {e => setUnit(e.target.value)} />
         <input
             type = "text"
             placeholder = "Enter date here"
