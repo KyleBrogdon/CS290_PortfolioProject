@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 /**
- * Create a new movie with the title, year and language provided in the query parameters
+ * Create a new exercise with the title, year and language provided in the query parameters
  */
 app.post("/exercises", (req, res) => {
     console.log(req.query);
@@ -21,14 +21,12 @@ app.post("/exercises", (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            res.status(400).json({ error: 'Request failed' });
+            res.status(500).json({ error: 'Request failed' });
         });
 });
 
 /**
- * Retrive movies. 
- * If the query parameters include a year, then only the movies for that year are returned.
- * Otherwise, all movies are returned.
+ * Retrive all exercises. 
  */
 app.get("/exercises", (req, res) => {
     console.log(req.query);
@@ -41,13 +39,13 @@ app.get("/exercises", (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            res.send({ error: 'Request failed' });
+            res.status(500).json({ error: 'Request failed' });
         });
 
 });
 
 /**
- * Update the movie whose _id is provided and set its title, year and language to
+ * Update the exercise whose _id is provided and set its name, reps, weight, unit, and date to
  * the values provided in the query parameters
  */
 app.put('/exercises/:_id', (req, res) => {
@@ -58,17 +56,17 @@ app.put('/exercises/:_id', (req, res) => {
                 res.type('application/json')
                 res.status(200).json({_id: req.params._id, name: req.body.name, reps: req.body.reps, weight: req.body.weight, date: req.body.date})
             }else{
-                res.status(404).json({Error: 'Resource not found'})
+                res.status(500).json({Error: 'Resource not found'})
             }
         })
         .catch(error => {
             console.error(error);
-            res.status(400).json({ error: 'Request failed' });
+            res.status(500).json({ error: 'Request failed' });
         });
 });
 
 /**
- * Delete the movie whose _id is provided in the query parameters
+ * Delete the exercise whose _id is provided in the query parameters
  */
 app.delete("/exercises/:_id", (req, res) => {
     exercise.deleteById(req.params._id)
@@ -77,12 +75,12 @@ app.delete("/exercises/:_id", (req, res) => {
                 res.status(204).send()
             }
             else{
-                res.status(404).json({Error: 'Resource not found'})
+                res.status(500).json({Error: 'Resource not found'})
             }
         })
         .catch(error => {
             console.error(error);
-            res.send({ error: 'Request failed' });
+            res.status(500).json({ error: 'Request failed' });
         });
 });
 

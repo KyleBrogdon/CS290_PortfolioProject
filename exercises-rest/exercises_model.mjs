@@ -42,7 +42,7 @@ const Exercise = mongoose.model("Exercise", exerciseSchema);
  * @returns A promise. Resolves to the JSON object for the document created by calling save
  */
 const createExercise = async (name, reps, weight, unit, date) => {
-    // Call the constructor to create an instance of the model class Movie
+    // Call the constructor to create an instance of the model class Exercise
     const exercise = new Exercise({ name: name, reps: reps, weight: weight, unit: unit, date: date });
     // Call save to persist this object as a document in MongoDB
     return exercise.save();
