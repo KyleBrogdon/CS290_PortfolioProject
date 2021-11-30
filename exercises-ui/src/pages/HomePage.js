@@ -10,8 +10,7 @@ function HomePage() {
     const onDelete = async _id => {
         const response = await fetch (`/exercises/${_id}`, {method: 'DELETE'});
         if (response.status === 204){
-            const newExercises = exercises.filter( e => e._id !== _id);
-            setExercises(newExercises);
+            setExercises(exercises.filter( e => e._id !== _id));
         } else{
             console.error(`Failed to delete movie with _id = ${_id}, status code = ${response.status}`);
         }
